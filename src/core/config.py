@@ -11,8 +11,7 @@ class Settings(BaseSettings):
     DB_HOST: str
     DB_PORT: str
     DB_NAME: str
-    JWT_SECRET_KEY: str
-    USER_SECRET_KEY: str
+    SECRET_AUTH: str
     DATABASE_URL: str = ""
 
     def __init__(self, **kwargs):

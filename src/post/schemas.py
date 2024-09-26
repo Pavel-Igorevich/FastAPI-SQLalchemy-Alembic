@@ -3,7 +3,7 @@ from datetime import datetime, date
 from typing import Optional
 
 
-class Post(BaseModel):
+class PostInfo(BaseModel):
     id: int
     created_time: datetime
     update_time: Optional[datetime] = None
@@ -12,6 +12,7 @@ class Post(BaseModel):
     author_name: str
     telegram: Optional[str] = None
     email: str
+    active: bool
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -22,6 +23,7 @@ class SearchArgsPost(BaseModel):
     date_from: Optional[date] = None
     date_to: Optional[date] = None
     key: Optional[str] = None
+    active: Optional[bool] = True
 
 
 class SearchArgsAllPost(SearchArgsPost):
@@ -32,12 +34,9 @@ class CreatePost(BaseModel):
     header: str
     text: str
 
-    model_config = ConfigDict(from_attributes=True)
-
 
 class UpdatePost(BaseModel):
     id: int
+    header: Optional[str] = None
     text: Optional[str] = None
     active: bool
-
-    model_config = ConfigDict(from_attributes=True)

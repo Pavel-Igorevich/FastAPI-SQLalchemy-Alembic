@@ -1,0 +1,25 @@
+services:
+  postgres:
+    container_name: postgres_db
+    working_dir: /postgres
+    build:
+      context: .
+      dockerfile: database.Dockerfile
+      args:
+        POSTGRES_DB: ${DB_NAME}
+        POSTGRES_USER: ${DB_USER}
+        POSTGRES_PASSWORD: ${DB_PASS}
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    network_mode: bridge
+    image: postgres_db:test
+
+
+volumes:
+  db_data:
+    name: "db_postgres_data"
+    external: true

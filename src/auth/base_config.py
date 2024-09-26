@@ -4,11 +4,11 @@ from src.core.config import settings
 from .manager import get_user_manager
 from .models import User
 
-cookie_transport = CookieTransport(cookie_max_age=3600)
+cookie_transport = CookieTransport(cookie_max_age=3600, cookie_secure=False)
 
 
 def get_jwt_strategy() -> JWTStrategy:
-    return JWTStrategy(secret=settings.JWT_SECRET_KEY, lifetime_seconds=3600)
+    return JWTStrategy(secret=settings.SECRET_AUTH, lifetime_seconds=3600)
 
 
 auth_backend = AuthenticationBackend(

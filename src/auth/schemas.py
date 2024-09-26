@@ -1,7 +1,7 @@
 from typing import Optional
 
 from fastapi_users import schemas
-from pydantic import ConfigDict, field_validator
+from pydantic import ConfigDict
 from pydantic_core import core_schema
 from pydantic_extra_types.phone_numbers import PhoneNumber
 

@@ -1,4 +1,4 @@
-from fastapi_users.db import SQLAlchemyBaseUserTable
+from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
 from sqlalchemy import Integer, DateTime, func, String, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
