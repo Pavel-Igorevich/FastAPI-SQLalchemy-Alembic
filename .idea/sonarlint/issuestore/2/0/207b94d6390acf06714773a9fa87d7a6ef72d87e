@@ -1,0 +1,24 @@
+
+€python:S1192¼"bDefine a constant instead of duplicating this literal "dependant.call must be a function" 3 times.(Õ‰Éúÿÿÿÿ
+spython:S1192‘"UDefine a constant instead of duplicating this literal "Successful Response" 11 times.( Øë²úÿÿÿÿ
+lpython:S3776Ä"TRefactor this function to reduce its Cognitive Complexity from 75 to the 15 allowed.(ÑñÓ{
+Qpython:S930’"9Remove this unexpected named argument 'async_exit_stack'.(ã¶ÿ 
+Rpython:S1135Î"4Complete the task associated to this "TODO" comment.(ÖØœšúÿÿÿÿ
+Qpython:S930Ö"9Remove this unexpected named argument 'async_exit_stack'.(ã¶ÿ 
+jpython:S107‡"MMethod "__init__" has 26 parameters, which is greater than the 13 authorized.( Ğàşüÿÿÿÿ
+rpython:S3776†"TRefactor this function to reduce its Cognitive Complexity from 23 to the 15 allowed.(ú„Úüùÿÿÿÿ
+Jpython:S930Û"-Remove this unexpected named argument 'mode'.(¬Ù†¬ÿÿÿÿÿ
+Mpython:S1135ä"4Complete the task associated to this "TODO" comment.(öñ–ê
+jpython:S107½"MMethod "__init__" has 17 parameters, which is greater than the 13 authorized.( Ğàşüÿÿÿÿ
+opython:S107À"RMethod "add_api_route" has 26 parameters, which is greater than the 13 authorized.( Ğàşüÿÿÿÿ
+kpython:S107’"NMethod "api_route" has 24 parameters, which is greater than the 13 authorized.( Ğàşüÿÿÿÿ
+mpython:S3776°"TRefactor this function to reduce its Cognitive Complexity from 44 to the 15 allowed.(‡µºõ
+epython:S107¡
+"HMethod "get" has 23 parameters, which is greater than the 13 authorized.( Ğàşüÿÿÿÿ
+epython:S107š"HMethod "put" has 23 parameters, which is greater than the 13 authorized.( Ğàşüÿÿÿÿ
+fpython:S107˜"IMethod "post" has 23 parameters, which is greater than the 13 authorized.( Ğàşüÿÿÿÿ
+hpython:S107–"KMethod "delete" has 23 parameters, which is greater than the 13 authorized.( Ğàşüÿÿÿÿ
+ipython:S107"LMethod "options" has 23 parameters, which is greater than the 13 authorized.( Ğàşüÿÿÿÿ
+fpython:S107ˆ"IMethod "head" has 23 parameters, which is greater than the 13 authorized.( Ğàşüÿÿÿÿ
+gpython:S107†"JMethod "patch" has 23 parameters, which is greater than the 13 authorized.( Ğàşüÿÿÿÿ
+gpython:S107„"JMethod "trace" has 23 parameters, which is greater than the 13 authorized.( Ğàşüÿÿÿÿ

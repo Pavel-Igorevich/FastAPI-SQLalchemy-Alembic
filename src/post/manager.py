@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.auth.models import User
 from .models import Post
-from .schemas import SearchArgsAllPost, SearchArgsPost, CreatePost, UpdatePost
+from .schemas import SchSearchArgsAllPost, SchSearchArgsPost, SchCreatePost, SchUpdatePost
 
 
 class PostManager:
@@ -15,7 +15,7 @@ class PostManager:
     @staticmethod
     async def get_posts(
             session: AsyncSession,
-            params: Union[SearchArgsPost, SearchArgsAllPost],
+            params: Union[SchSearchArgsPost, SchSearchArgsAllPost],
             author_id: Optional[int] = None
     ) -> list[tuple[Post, User]]:
         query = select(Post, User).join(User, Post.author_id == User.id)
@@ -25,7 +25,7 @@ class PostManager:
         if params.active is not None:
             query = query.where(Post.active == params.active)
 
-        if isinstance(params, SearchArgsAllPost) and params.author_name:
+        if isinstance(params, SchSearchArgsAllPost) and params.author_name:
             query = query.where(User.name.ilike(f"%{params.author_name}%"))
 
         if params.date_from:
@@ -45,7 +45,7 @@ class PostManager:
         return result.fetchall()
 
     @staticmethod
-    async def get_all_posts(session: AsyncSession, params: SearchArgsAllPost) -> list[tuple[Post, User]]:
+    async def get_all_posts(session: AsyncSession, params: SchSearchArgsAllPost) -> list[tuple[Post, User]]:
         return await PostManager.get_posts(
             session=session,
             params=params
@@ -55,7 +55,7 @@ class PostManager:
     async def get_posts_by_user(
             session: AsyncSession,
             current_user: User,
-            params: SearchArgsPost
+            params: SchSearchArgsPost
     ) -> list[tuple[Post, User]]:
         return await PostManager.get_posts(
             session=session,
@@ -67,7 +67,7 @@ class PostManager:
     async def add_post(
             session: AsyncSession,
             current_user: User,
-            data: CreatePost
+            data: SchCreatePost
     ):
         new_post = Post(
             header=data.header,
@@ -82,7 +82,7 @@ class PostManager:
     @staticmethod
     async def update_post(
             session: AsyncSession,
-            data: UpdatePost
+            data: SchUpdatePost
     ) -> Post:
         result = await session.execute(select(Post).filter_by(id=data.id))
         post = result.scalar()
@@ -99,6 +99,17 @@ class PostManager:
         await session.commit()
         await session.refresh(post)
         return post
+
+    @staticmethod
+    async def delete_post(session: AsyncSession, post_id: int) -> bool:
+        query = select(Post).where(Post.id == post_id)
+        result = await session.execute(query)
+        post = result.scalar_one_or_none()
+        if post:
+            await session.delete(post)
+            await session.commit()
+            return True
+        return False
 
 
 

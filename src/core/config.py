@@ -1,5 +1,4 @@
 from pydantic_settings import BaseSettings
-from pydantic import root_validator
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -12,12 +11,11 @@ class Settings(BaseSettings):
     DB_PORT: str
     DB_NAME: str
     SECRET_AUTH: str
-    DATABASE_URL: str = ""
+    SECRET_ALGORITHM: str
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        # Вычисляем DATABASE_URL после инициализации объекта
-        self.DATABASE_URL = (
+    @property
+    def DATABASE_URL(self):
+        return (
             f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}"
             f"/{self.DB_NAME}?async_fallback=True"
         )
@@ -28,3 +26,4 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ваши Посты</title>
+</head>
+<body>
+    {% for post in posts %}
+        <div style="display: flex; margin-bottom: 15px; margin-left: 10px">
+            <img src="{{ url_for('static', path='images/3ab9378e-b019-4782-9cf0-b224a6cbf9fd.webp') }}"
+            alt="fotos" width="200">
+            <div style="margin-left: 30px">
+                <h1>{{ post.header }}</h1>
+                <h4>{{ post.text }}</h4>
+                <h4>{{ post.author_name }}</h4>
+            </div>
+
+        </div>
+    {% endfor %}
+</body>
+</html>

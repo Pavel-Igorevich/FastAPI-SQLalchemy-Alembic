@@ -12,6 +12,7 @@ from .utils import get_user_db
 class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
     reset_password_token_secret = settings.SECRET_AUTH
     verification_token_secret = settings.SECRET_AUTH
+    # todo Разобрать изменения паролей, верификацию и т.д.
 
     async def on_after_login(
             self,
@@ -20,6 +21,12 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
             response: Optional[Response] = None,
     ):
         print(f"User {user.id} logged in.")
+
+    async def on_after_forgot_password(
+            self, user: User, token: str, request: Optional[Request] = None
+    ):
+        # todo продумать работу
+        print(f"User {user.id} has forgot their password. Reset token:\n{token}")
 
 
 async def get_user_manager(user_db=Depends(get_user_db)):

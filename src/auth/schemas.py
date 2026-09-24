@@ -1,7 +1,7 @@
 from typing import Optional
 
 from fastapi_users import schemas
-from pydantic import ConfigDict
+from pydantic import ConfigDict, EmailStr
 from pydantic_core import core_schema
 from pydantic_extra_types.phone_numbers import PhoneNumber
 
@@ -13,10 +13,10 @@ class PhoneNumberValidator(PhoneNumber):
         return formatted_number[4:]
 
 
-class UserRead(schemas.BaseUser[int]):
+class SchUserRead(schemas.BaseUser[int]):
     id: int
     name: str
-    email: str
+    email: EmailStr
     is_active: bool = True
     is_superuser: bool = False
     is_verified: bool = False
@@ -25,8 +25,8 @@ class UserRead(schemas.BaseUser[int]):
     model_config = ConfigDict(from_attributes=True)
 
 
-class UserCreate(schemas.BaseUserCreate):
-    email: str
+class SchUserCreate(schemas.BaseUserCreate):
+    email: EmailStr
     name: str
     password: str
     is_active: Optional[bool] = True
@@ -37,5 +37,10 @@ class UserCreate(schemas.BaseUserCreate):
     model_config = ConfigDict(from_attributes=True)
 
 
-class UserUpdate(schemas.BaseUserUpdate):
-    pass
+class SchUserUpdate(schemas.BaseUserUpdate):
+    password: Optional[str] = None
+    email: Optional[EmailStr] = None
+    is_active: Optional[bool] = None
+    is_superuser: Optional[bool] = None
+    is_verified: Optional[bool] = None
+    telegram_number: Optional[PhoneNumberValidator] = None

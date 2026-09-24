@@ -1,10 +1,10 @@
-from .schemas import PostInfo
+from .schemas import SchPostInfo
 from .models import Post
 from src.auth.models import User
 
 
-def convert_post_info_form(post_data: Post, user_data: User) -> PostInfo:
-    return PostInfo(
+def convert_post_info_form(post_data: Post, user_data: User) -> SchPostInfo:
+    return SchPostInfo(
         id=post_data.id,
         created_time=post_data.created_time,
         update_time=post_data.update_time,

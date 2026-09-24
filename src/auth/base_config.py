@@ -4,11 +4,11 @@ from src.core.config import settings
 from .manager import get_user_manager
 from .models import User
 
-cookie_transport = CookieTransport(cookie_max_age=3600, cookie_secure=False)
+cookie_transport = CookieTransport(cookie_max_age=3600, cookie_secure=False, cookie_name='HFP_access_token')
 
 
 def get_jwt_strategy() -> JWTStrategy:
-    return JWTStrategy(secret=settings.SECRET_AUTH, lifetime_seconds=3600)
+    return JWTStrategy(secret=settings.SECRET_AUTH, lifetime_seconds=3600, algorithm=settings.SECRET_ALGORITHM)
 
 
 auth_backend = AuthenticationBackend(
@@ -23,3 +23,4 @@ fastapi_users = FastAPIUsers[User, int](
 )
 
 current_user = fastapi_users.current_user()
+current_superuser = fastapi_users.current_user(superuser=True)

@@ -3,7 +3,7 @@ from datetime import datetime, date
 from typing import Optional
 
 
-class PostInfo(BaseModel):
+class SchPostInfo(BaseModel):
     id: int
     created_time: datetime
     update_time: Optional[datetime] = None
@@ -17,7 +17,7 @@ class PostInfo(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
-class SearchArgsPost(BaseModel):
+class SchSearchArgsPost(BaseModel):
     limit: int = Field(default=10, ge=1)
     offset: int = Field(default=0, ge=0)
     date_from: Optional[date] = None
@@ -26,16 +26,16 @@ class SearchArgsPost(BaseModel):
     active: Optional[bool] = True
 
 
-class SearchArgsAllPost(SearchArgsPost):
+class SchSearchArgsAllPost(SchSearchArgsPost):
     author_name: Optional[str] = None
 
 
-class CreatePost(BaseModel):
+class SchCreatePost(BaseModel):
     header: str
     text: str
 
 
-class UpdatePost(BaseModel):
+class SchUpdatePost(BaseModel):
     id: int
     header: Optional[str] = None
     text: Optional[str] = None
